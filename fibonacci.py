@@ -3,7 +3,7 @@ while True:
   user_input = input("Enter the number of terms: ")
   
   if user_input.isdigit(): # check if the input is only integers
-    n = int(user_input): 
+    n = int(user_input)
     if n > 0: # make sure the integer is positive
       a, b = 0,1 #initialize the first two numbers of the Fibonacci sequence, 
       for _ in range(n): # print the fibonacci sequence using a for loop
