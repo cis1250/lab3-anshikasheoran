@@ -7,63 +7,51 @@
 # 3. Create lists to store words and their corresponding frequencies.
 # 4. Iterate through words and update frequencies
 
-import re
-import string
 
-#This is a function that checks if a text qualifies as a sentence. You do not need to modify this!
+import re
+
+# Function to check if input is a valid sentence
 def is_sentence(text):
-    # Check if the text is not empty and is a string
     if not isinstance(text, str) or not text.strip():
         return False
-
-    # Check for starting with a capital letter
     if not text[0].isupper():
         return False
-
-    # Check for ending punctuation
     if not re.search(r'[.!?]$', text):
         return False
-
-    # Check if it contains at least one word (non-whitespace characters)
     if not re.search(r'\w+', text):
         return False
-
     return True
 
+
 user_sentence = input("Enter a sentence: ")
-
-while not (is_sentence(user_sentence) == False):
+while not is_sentence(user_sentence):
     print("This does not meet the criteria for a sentence.")
-    user_input = input("Enter a sentence: ")
+    user_sentence = input("Enter a sentence: ")
 
+# Make the sentence lowercase
 sentence = user_sentence.lower()
 
-# Split the sentence into individual words
-# Example: "to be or not to be" → ["to", "be", "or", "not", "to", "be"]
+# Remove punctuation except spaces
+sentence = re.sub(r'[^\w\s]', '', sentence)
+
+# Split into words
 words = sentence.split()
 
-# Create two empty lists:
-# unique_words will store each word only once
-# frequencies will store how many times each word appears
+# Lists to store unique words and their frequencies
 unique_words = []
 frequencies = []
 
-# Loop through each word in the list of words
+# Count word frequencies manually
 for word in words:
     if word in unique_words:
-        # If the word is already in unique_words, find its index
         index = unique_words.index(word)
-         # Increase the frequency of that word by 1
         frequencies[index] += 1
     else:
-         # If the word is not in unique_words, add it
         unique_words.append(word)
-        # Start its frequency count at 1
         frequencies.append(1)
 
-# Print the results
+# Print results
 print("\nWord Frequencies:")
-# Loop through all words in unique_words using their index
 for i in range(len(unique_words)):
-     # Print the word and its frequency
     print(unique_words[i] + ": " + str(frequencies[i]))
+
