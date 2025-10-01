@@ -8,6 +8,7 @@
 # 4. Iterate through words and update frequencies
 
 import re
+import string
 
 #This is a function that checks if a text qualifies as a sentence. You do not need to modify this!
 def is_sentence(text):
@@ -31,13 +32,11 @@ def is_sentence(text):
 
 user_sentence = input("Enter a sentence: ")
 
-while (is_sentence(user_sentence) == False):
+while not (is_sentence(user_sentence) == False):
     print("This does not meet the criteria for a sentence.")
     user_input = input("Enter a sentence: ")
 
-# Make the sentence lowercase and remove punctuation
-# This helps count words consistently (e.g., "The" and "the" are the same)
-sentence = sentence.lower().replace(".", "").replace("!", "").replace("?", "")
+sentence = user_sentence.lower()
 
 # Split the sentence into individual words
 # Example: "to be or not to be" → ["to", "be", "or", "not", "to", "be"]
