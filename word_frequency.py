@@ -34,4 +34,37 @@ user_sentence = input("Enter a sentence: ")
 while (is_sentence(user_sentence) == False):
     print("This does not meet the criteria for a sentence.")
     user_input = input("Enter a sentence: ")
-    
+
+# Make the sentence lowercase and remove punctuation
+# This helps count words consistently (e.g., "The" and "the" are the same)
+sentence = sentence.lower().replace(".", "").replace("!", "").replace("?", "")
+
+# Split the sentence into individual words
+# Example: "to be or not to be" → ["to", "be", "or", "not", "to", "be"]
+words = sentence.split()
+
+# Create two empty lists:
+# unique_words will store each word only once
+# frequencies will store how many times each word appears
+unique_words = []
+frequencies = []
+
+# Loop through each word in the list of words
+for word in words:
+    if word in unique_words:
+        # If the word is already in unique_words, find its index
+        index = unique_words.index(word)
+         # Increase the frequency of that word by 1
+        frequencies[index] += 1
+    else:
+         # If the word is not in unique_words, add it
+        unique_words.append(word)
+        # Start its frequency count at 1
+        frequencies.append(1)
+
+# Print the results
+print("\nWord Frequencies:")
+# Loop through all words in unique_words using their index
+for i in range(len(unique_words)):
+     # Print the word and its frequency
+    print(unique_words[i] + ": " + str(frequencies[i]))
